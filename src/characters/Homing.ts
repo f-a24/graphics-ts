@@ -70,7 +70,8 @@ export default class Homing extends Shot {
       const dist = this.position.distance(character.position);
       if (dist <= (this.width + character.width) / 4) {
         if (character instanceof Viper && (character as Viper).isComing) return;
-        if (character.life - this.power <= 0) {
+        character.life -= this.power;
+        if (character.life <= 0) {
           for (let i = 0; i < this.explosionArray.length; ++i) {
             if (this.explosionArray[i].life !== true) {
               this.explosionArray[i].set(

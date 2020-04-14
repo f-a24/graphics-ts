@@ -75,7 +75,8 @@ export default class Shot extends Character {
       const dist = this.position.distance(target.position);
       if (dist <= (this.width + target.width) / 4) {
         if (target instanceof Viper && target.isComing) return;
-        if (target.life - this.power <= 0) {
+        target.life -= this.power;
+        if (target.life <= 0) {
           this.explosionArray.some((explosion) => {
             if (!explosion.life) {
               explosion.set(target.position.x, target.position.y);
